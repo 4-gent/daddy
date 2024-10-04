@@ -1,0 +1,31 @@
+.main-body{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(41, 37, 37);
+    color: white;
+}
+.main-container{
+    width: 100vw;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(32, 31, 31);
+    width: 40vw;
+    padding: 5vh;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 15vh;
+
+    transition: 300ms;
+
+    border-radius: 5px;
+    box-shadow: 0px 7px 10px 3px rgba(37, 37, 37, 0.7);
+}
+
+.main-container:hover{
+    transition: 300ms;
+    width: 42vw;
+    box-shadow: 0px 7px 10px 3px hsla(39, 99%, 54%, 0.7);
+}

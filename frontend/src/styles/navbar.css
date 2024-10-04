@@ -1,0 +1,27 @@
+.nav-text{
+    transition: 300ms;
+    color: white;
+}
+.nav-text:hover{
+    transition: 300ms;
+    color: hsla(39, 99%, 54%, 0.7)
+}
+.navbar:hover{
+    transition: 300ms;
+    box-shadow: 0px 7px 10px 3px hsla(39, 99%, 54%, 0.7) !important;
+}
+.navbar{
+    transition: 300ms;
+    background-color: rgb(32, 31, 31);
+    padding: 0.5rem 1rem;
+    box-shadow: 0px 7px 10px 3px rgba(37, 37, 37, 0.7);
+}
+.nav-toggle{
+    transition: 300ms;
+    background-color: rgb(49, 48, 48);
+}
+.nav-toggle:hover{
+    transition: 300ms;
+    box-shadow: 0px 7px 10px 3px hsla(39, 99%, 54%, 0.7) !important;
+
+}
