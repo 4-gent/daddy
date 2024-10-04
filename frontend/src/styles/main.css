@@ -1,9 +1,20 @@
 .main-body{
+    background-color: #FFE0B2;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(41, 37, 37);
-    color: white;
 }
+
+.main-title{
+    text-align: center;
+    font-size: 3rem;
+    color: rgb(72, 66, 66);
+}
+
+.main-logo{
+    width: 100%;
+    height: auto;
+}
+
 .main-container{
     width: 100vw;
     text-align: left;
@@ -27,5 +38,37 @@
 .main-container:hover{
     transition: 300ms;
     width: 42vw;
+    box-shadow: 0px 7px 10px 3px hsla(39, 99%, 54%, 0.7);
+}
+
+.main-button-container{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.carousel-img{
+    width: 50vw;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+
+.main-button{
+    width: 30vw;
+    height: 50px;
+    margin: 10px 0;
+    padding: 3px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(72, 66, 66);
+
+    color: white;
+
+    transition: 300ms;
+}
+.main-button:hover{
+    transition: 300ms;
+    width: 31vw;
+    height: 8vh;
     box-shadow: 0px 7px 10px 3px hsla(39, 99%, 54%, 0.7);
 }

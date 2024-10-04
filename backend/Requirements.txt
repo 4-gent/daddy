@@ -10,3 +10,4 @@ matplotlib
 flask_cors
 flask_bcrypt
 python-dotenv
+flask_session
