@@ -1,4 +1,5 @@
 from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
@@ -12,7 +13,7 @@ load_dotenv()
 
 api_key = os.getenv("OPENAI_API_KEY")
 
-father = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0.2, api_key=api_key)
+father = ChatGroq(model="mixtral-8x7b-32768", temperature=0.2)
 
 prompt = ChatPromptTemplate.from_messages(
         [
