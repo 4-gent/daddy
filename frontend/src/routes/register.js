@@ -8,15 +8,25 @@ import Navigation from '../components/navbar' // Import Navigation component
 export default function Registration() { // Define and export the Registration component
     const [username, setUsername] = useState('') // Declare state variable for username with initial value ''
     const [password, setPassword] = useState('') // Declare state variable for password with initial value ''
+    const [first, setFirstName] = useState('') // Declare state variable for first name with initial value ''
+    const [last, setLastName] = useState('') // Declare state variable for last name with initial value ''
+    const [email, setEmail] = useState('') // Declare state variable for email with initial value ''
+    const [parent, setParent] = useState('') // Declare state variable for parent with initial value ''
+    const [age, setAge] = useState('') // Declare state variable for age with initial value ''
 
     const handleRegistration = async(e) => { // Define an asynchronous function to handle registration
         e.preventDefault() // Prevent the default form submission behavior
         const data = { // Create a data object with username and password
             username: username, 
-            password: password
+            password: password,
+            firstname: first,
+            lastname: last,
+            email: email,
+            parent: parent,
+            age: age
         }
         try{
-            if(username.trim().length === 0 || password.trim().length === 0){ // Check if username or password is empty
+            if(username.trim().length === 0 || password.trim().length === 0 || first.trim().length === 0 || last.trim().length === 0 || email.trim().length === 0 || parent.trim().length === 0 || age.trim().length === 0){ // Check if username or password is empty
                 NotificationManager.error('Please fill in all fields') // Show error notification if fields are empty
             }
             else{
@@ -53,6 +63,16 @@ export default function Registration() { // Define and export the Registration c
                 <form onSubmit={handleRegistration} className='d-flex flex-column align-items-center'> {/* Attach handleRegistration function to form submission */}
                     <input className="register-input" required type='username' placeholder='Username' onChange={(e) => setUsername(e.target.value)} /> {/* Input field for username */}
                     <input className="register-input" required type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} /> {/* Input field for password */}
+                    <input className="register-input" required type='text' placeholder='First Name' onChange={(e) => setFirstName(e.target.value)} /> {/* Input field for username */}
+                    <input className="register-input" required type='text' placeholder='Last Name' onChange={(e) => setLastName(e.target.value)} /> {/* Input field for username */}
+                    <input className="register-input" required type='email' placeholder='Email' onChange={(e) => setEmail(e.target.value)} /> {/* Input field for username */}
+                    <input className="register-input" required type='number' placeholder='How old are you? (I.E. 16)' onChange={(e) => setAge(e.target.value)} /> {/* Input field for username */}
+                    <select className="register-input" required onChange={(e) => setParent(e.target.value)}>
+                        <option value="" disabled selected>Choose Parent Profile</option>
+                        <option value="asian">Asian Dad</option>
+                        <option value="black">Black Dad</option>
+                        <option value="mexican">Mexican Dad</option>
+                    </select>
                     <button className="register-button" type='submit'>Register</button> {/* Submit button */}
                 </form>
             </div>

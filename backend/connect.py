@@ -10,3 +10,5 @@ MONGO_URI = os.environ['MONGO_URI']
 client = MongoClient(MONGO_URI)
 db = client.get_database('sase')
 users = pymongo.collection.Collection(db, 'users')
+input_db = pymongo.collection.Collection(db, 'input')
+responses = pymongo.collection.Collection(db, 'response')

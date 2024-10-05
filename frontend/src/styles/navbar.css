@@ -12,7 +12,7 @@
 }
 .navbar{
     transition: 300ms;
-    background-color: rgb(32, 31, 31);
+    background-color: rgb(72, 66, 66);
     padding: 0.5rem 1rem;
     box-shadow: 0px 7px 10px 3px rgba(37, 37, 37, 0.7);
 }
