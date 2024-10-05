@@ -5,6 +5,7 @@ import { NotificationManager, NotificationContainer } from 'react-notifications'
 import 'react-notifications/lib/notifications.css' // Importing notification styles
 import '../styles/login.css' // Importing custom styles for the login component
 import Navigation from '../components/navbar' // Importing Navigation component
+axios.defaults.withCredentials = true;
 
 // Defining the Login component
 export default function Login() {
@@ -21,8 +22,11 @@ export default function Login() {
         }
         try{
             // Making a POST request to the login endpoint
-            const response = await axios.post('http://localhost:4000/login', data)
+            const response = await axios.post('http://localhost:4000/login', data, { withCredentials: true })
             NotificationManager.success('Login successful!') // Displaying success notification
+            setTimeout(() => {
+                window.location.href = '/faceToFace' // Redirecting to the main page after 3 seconds
+            }, 3000) // 3000 milliseconds = 3 seconds
         } catch (e){
             if(e.response.status === 401){
                 NotificationManager.error('Invalid credentials, please try again!') // Displaying error notification

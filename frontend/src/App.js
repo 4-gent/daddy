@@ -4,7 +4,7 @@ import Main from './main'
 import Login from './routes/login'
 import Registration from './routes/register'
 import Phone from './routes/phone';
-
+import FaceToFace from './routes/faceToFace';
 
 
 export default function App() {
@@ -15,6 +15,7 @@ export default function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Registration />} />
         <Route exact path="/phone" element={<Phone />} />
+        <Route exact path="/facetoface" element={<FaceToFace />} />
       </Routes>
     </Router>
   );
