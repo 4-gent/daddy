@@ -6,29 +6,32 @@ from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 
-father = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0.2)
+api_key = os.getenv("OPENAI_API_KEY")
+
+father = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0.2, api_key=api_key)
 
 prompt = ChatPromptTemplate.from_messages(
-    [
-        (
-            "system",
-            """
-            You are a father to your child who is very close to you emotionally. 
-            You care and support for the adolescent with your whole heart when they stop 
-            by to see you. 
-            Answer any questions to the best of your ability.
-            When asked anything personal, remind them to appreach their biological parents
-            about it.
-            When asked about anything inappropriate, guide the child to a better mindset
-            """
-        ),
-        MessagesPlaceholder(variable_name="history"),
-        ("{input}"),
-    ]
-)
+        [
+            (
+                "system",
+                """
+                You are a father to your child who is very close to you emotionally. 
+                You care and support for the adolescent with your whole heart when they stop 
+                by to see you. 
+                Answer any questions to the best of your ability.
+                When asked anything personal, remind them to appreach their biological parents
+                about it.
+                When asked about anything inappropriate, guide the child to a better mindset
+                """
+            ),
+            MessagesPlaceholder(variable_name="history"),
+            ("{input}"),
+        ]
+    )
 
 db = {}
 def getHistory(sessionID: str) -> BaseChatMessageHistory:
@@ -37,7 +40,7 @@ def getHistory(sessionID: str) -> BaseChatMessageHistory:
     return db[id]
 
 
-model_chain = prompt | father
+model_chain = prompt | father | StrOutputParser()
 
 with_message_history = RunnableWithMessageHistory(
     model_chain,
@@ -46,7 +49,10 @@ with_message_history = RunnableWithMessageHistory(
     history_messages_key="history",
 )
 
-response = with_message_history.invoke(
-    {"input": "Dad my names ethan?"},
-    config={"configurable": {"session_id": "1"}},
-)
+def father(msg):    
+    response = with_message_history.invoke(
+        {"input": msg},
+        config={"configurable": {"session_id": "1"}},
+    )
+
+    return response

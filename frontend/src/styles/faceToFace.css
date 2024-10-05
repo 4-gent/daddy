@@ -1,3 +1,10 @@
+.FaceToFace-body{
+    background-image: url("./black.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
 .faceToFace-body{
     width: 100vw;
     height: 100vh;

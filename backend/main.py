@@ -3,7 +3,7 @@ from flask_cors import CORS  # Import CORS for handling Cross-Origin Resource Sh
 from flask_session import Session  # Import Session for handling user sessions
 from flask_bcrypt import Bcrypt  # Import Bcrypt for hashing passwords
 from connect import db, users, input_db, responses  # Import database connection and users collection
-from bot import bot
+from bot import father
 
 app = Flask(__name__)  # Create a Flask application instance
 CORS(app, origins=['http://localhost:3000'])  # Enable CORS for the specified origin
@@ -48,17 +48,14 @@ def register():
     else:
         return jsonify({'message': 'Method not allowed'}), 405  # Return method not allowed message with status code 405
 
-@app.route('/input', methods=['GET', 'POST'])
-def input():
+@app.route('/prompt', methods=['GET', 'POST'])
+def prompt():
     if request.method == 'POST':
-        
-    else:
-        return jsonify({'message': 'Server-side Error'}), 405
-
-@app.route('/api/response', methods=['GET', 'POST']):
-def response():
-    if request.method == 'POST':
-        
+        data = request.get_json()
+        print(data['input'])
+        response = father(data['input'])
+        print(response)
+        return jsonify(response), 200
     else:
         return jsonify({'message': 'Server-side Error'}), 405
 
