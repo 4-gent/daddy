@@ -1,15 +1,22 @@
 from flask import Flask, request, jsonify, session  # Import Flask and related modules for handling requests and responses
 from flask_cors import CORS  # Import CORS for handling Cross-Origin Resource Sharing
-from flask_session import Session  # Import Session for handling user sessions
 from flask_bcrypt import Bcrypt  # Import Bcrypt for hashing passwords
 from connect import db, users, input_db, responses  # Import database connection and users collection
 from bot import father
+import os
+from bson import ObjectId
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)  # Create a Flask application instance
-CORS(app, origins=['http://localhost:3000'])  # Enable CORS for the specified origin
+CORS(app, origins=['http://localhost:3000'], supports_credentials=True)  # Enable CORS for the specified origin
 
 bcrypt = Bcrypt(app)  # Initialize Bcrypt with the Flask app
-# Session(app)
+
+app.secret_key = 'fuckyou'
+
+# app.permanent_session_lifetime = timedelta(days=7)
 
 @app.route('/login', methods=['POST'])  # Define the login route with GET and POST methods
 def login():
@@ -18,7 +25,7 @@ def login():
         user = users.find_one({'username': data['username']})  # Find the user in the database by username
 
         if user and bcrypt.check_password_hash(user['password'], data['password']):  # Check if user exists and password matches
-            # session['_id'] = str(user['_id'])  # Set the session ID to the user ID
+            session['user_id'] = str(user['_id'])
             return jsonify({'message': 'Login successful'}), 200  # Return success message with status code 200
         else:
             return jsonify({'message': 'Invalid username or password'}), 401  # Return failure message with status code 401
@@ -52,8 +59,17 @@ def register():
 def prompt():
     if request.method == 'POST':
         data = request.get_json()
-        print(data['input'])
-        response = father(data['input'])
+
+        user = users.find_one({'_id': ObjectId(session['user_id'])})
+
+        new_input = {
+            'input': data['input'],
+            'firstname': user['first_name'],
+            'lastname': user['last_name'],
+            'age': user['age']
+        }
+
+        response = father(new_input)
         print(response)
         return jsonify(response), 200
     else:
