@@ -25,7 +25,7 @@ export default function Login() {
             const response = await axios.post('http://localhost:4000/login', data, { withCredentials: true })
             NotificationManager.success('Login successful!') // Displaying success notification
             setTimeout(() => {
-                window.location.href = '/faceToFace' // Redirecting to the main page after 3 seconds
+                window.location.href = '/phone' // Redirecting to the main page after 3 seconds
             }, 3000) // 3000 milliseconds = 3 seconds
         } catch (e){
             if(e.response.status === 401){
