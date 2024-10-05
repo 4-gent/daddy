@@ -25,16 +25,14 @@ export default function FaceToFace() {
             {/* Input section */}
             <form onSubmit={handleInput}>
                 <div className='input-section d-flex flex-column align-items-center'>
-                        <p className='name-display'>Daddy</p>
+                    <p className='name-display'>Daddy</p>
                         <br />
-                        {/* <textarea className='ai-text-display whitespace-nowrap overflow-y-hidden'  */}
-                            {/* placeholder='AI character will respond here...' readOnly>{output}</textarea> */}
-                        <p>{output}</p>
+                    <div> <p className='daddyOutput-container d-flex'> {output}</p> </div>
                         <br />
-                        <input type='text' placeholder='Type your message here...' className='user-input' onChange={(e) => setInput(e.target.value)}/>
+                    <input type='text' placeholder='Type your message here...' className='user-input' onChange={(e) => setInput(e.target.value)}/>
                         <br />
-                        <button type="submit" className='send-button'>Send</button>
-                        <button className='leave-button'>Leave</button>
+                    <button type="submit" className='send-button'>Send</button>
+                    <button className='leave-button'>Leave</button>
                 </div>
             </form>
         </div>
