@@ -31,11 +31,15 @@ export default function Registration() { // Define and export the Registration c
             }
             else{
                 const response = await axios.post('http://localhost:4000/register', data) // Send POST request to the server with registration data
-                if (response.status === 200) // Check if the response status is 200 (OK)
+                if (response.status === 200){
                     NotificationManager.success('Registration successful!') // Show success notification if registration is successful
-                else
+                    setTimeout(() => {
+                        window.location.href = '/login' // Redirect to the login page after 3 seconds
+                    }, 3000); // 3000 milliseconds = 3 seconds
+                } // Check if the response status is 200 (OK)
+                else{
                     NotificationManager.error('Registration failed, please try again!') // Show error notification if registration failed
-                    console.log('Login failed') // Log 'Login failed' to the console
+                }
             }
                 
         } catch (e){ // Catch any errors that occur during the request
