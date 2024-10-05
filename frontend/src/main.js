@@ -8,6 +8,9 @@ import asian from './styles/asian.webp'
 import black from './styles/black.webp'
 import mexican from './styles/mexican.webp'
 import logo from './styles/logo.png'
+import remotedad from './styles/remotedad.webp'
+import bbq from './styles/bbq.png'
+import modelo from './styles/modelo.png'
 
 // Exporting the Main function as the default export
 export default function Main() {
@@ -35,6 +38,27 @@ export default function Main() {
                             className="carousel-img d-block"
                             src={mexican}
                             alt="Third slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="carousel-img d-block"
+                            src={remotedad}
+                            alt="Fourth slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="carousel-img d-block"
+                            src={bbq}
+                            alt="Fifth slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="carousel-img d-block"
+                            src={modelo}
+                            alt="Sixth slide"
                         />
                     </Carousel.Item>
                 </Carousel>

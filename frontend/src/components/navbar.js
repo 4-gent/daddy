@@ -31,6 +31,8 @@ export default function Navigation() {
                             <Nav.Link className='nav-text' href='/login'>Login</Nav.Link>
                             {/* Nav.Link component for the register link */}
                             <Nav.Link className='nav-text' href='/register'>Register</Nav.Link>
+                            {/* Nav.Link component for the Phone page */}
+                            <Nav.Link className='nav-text' href='/phone'>Phone</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
