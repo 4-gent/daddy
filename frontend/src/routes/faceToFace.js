@@ -17,9 +17,7 @@ import mexican_Backyard from '../styles/scenes/modelo.png'
 import mexican_Kitchen from '../styles/scenes/bbq.png'
 import mexican_Livingroom from '../styles/scenes/remotedad.webp'
 
-
 axios.defaults.withCredentials = true;
-
 
 const imageMapping = {
     'black_start': black,

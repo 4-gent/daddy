@@ -1,0 +1,161 @@
+.call-body{
+    width: 100vw;
+    height: 100vh;
+    background-color: #FFE0B2;
+}
+
+.callscreen-x{
+    position: relative;
+    
+    margin-left: auto;
+    margin-right: 15vw; 
+    margin-top: 27.5px;
+    width: 307.8px;      
+    height: 666.9px;     
+    background-color: #7371ee;
+    background-image: linear-gradient(60deg, #7371ee 1%, #a1d9d6 100%);
+    border-radius: 34.2px; 
+    box-shadow: 0px 0px 0px 9.9px #1f1f1f, 0px 0px 0px 11.7px #191919, 0px 0px 0px 18px #111; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Home button indicator */
+    &:after {
+        bottom: 5.985px;   
+        width: 119.7px;    
+        height: 3.42px;  
+        background-color: #f2f2f2;
+        border-radius: 8.55px; 
+    }
+
+    /* Frontal camera/speaker frame */
+    &:before {
+        z-index: 1050;
+        top: 0px;
+        width: 47.88%;    
+        height: 25.65px;    
+        background-color: #1f1f1f;
+        border-radius: 0px 0px 34.2px 34.2px; 
+    }
+
+    i,
+    b,
+    span {
+        position: absolute;
+        display: block;
+        color: transparent;
+    }
+
+    /* Speaker */
+    i {
+        z-index: 1050;
+        top: 0px;
+        left: 50%;
+        transform: translate(-50%, 5.13px); 
+        height: 6.84px;  
+        width: 12.825%;   
+        background-color: #101010;
+        border-radius: 6.84px; 
+        box-shadow: inset 0px -2.565px 2.565px 0px rgba(256, 256, 256, 0.2); 
+    }
+
+    /* Camera */
+    b {
+        z-index: 1050;
+        left: 8.55%;  
+        top: 0px;
+        transform: translate(153.9px, 3.42px); 
+        width: 10.26px;    
+        height: 10.26px;   
+        background-color: #101010;
+        border-radius: 10.26px; 
+        box-shadow: inset 0px -2.565px 1.71px 0px rgba(256, 256, 256, 0.2); 
+        
+        &:after {
+            content: '';
+            position: absolute;
+            background-color: #2d4d76;
+            width: 5.13px;   
+            height: 5.13px;  
+            top: 2.565px;     
+            left: 2.565px;    
+            display: block;
+            border-radius: 3.42px;
+            box-shadow: inset 0px -1.71px 1.71px rgba(0, 0, 0, 0.5); 
+        }
+    }
+}
+
+/* Profile Picture & Call Status */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-top: 120px;
+}
+
+.caller-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.call-status {
+    font-size: 16px;
+    color: white;
+    opacity: 0.8;
+    margin-bottom: 110px;
+}
+
+/* Call Control Buttons */
+.call-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.call-btn {
+    background-color: white;
+    color: #7371ee;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 300ms ease;
+}
+
+.end-call-btn {
+    background-color: #ff3b30;
+    color: white;
+}
+
+.call-btn:hover {
+    background-color: #ededed;
+}
+
+

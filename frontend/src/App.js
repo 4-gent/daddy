@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Main from './main'
 import Login from './routes/login'
 import Registration from './routes/register'
-import Phone from './routes/phone';
-import FaceToFace from './routes/faceToFace';
+import Phone from './routes/phone'
+import FaceToFace from './routes/faceToFace'
+import Mainscreen from './routes/mainscreen'
+import Call from './routes/callphone'
 
 
 export default function App() {
@@ -16,6 +18,8 @@ export default function App() {
         <Route exact path="/register" element={<Registration />} />
         <Route exact path="/phone" element={<Phone />} />
         <Route exact path="/facetoface" element={<FaceToFace />} />
+        <Route exact path="/mainscreen" element={<Mainscreen/>} />
+        <Route exact path="/callphone" element={<Call/>}/>
       </Routes>
     </Router>
   );
