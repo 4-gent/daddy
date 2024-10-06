@@ -18,7 +18,7 @@ export default function Main() {
     return (
         <div className='main-body'>
             <div className='d-flex flex-row justify-content-between'>
-                <Carousel fade={true} controls={false} interval={3000} indicators={false}>
+                <Carousel fade={true} slide={false} controls={false} interval={3000} indicators={false}>
                     <Carousel.Item>
                         <img
                             className="carousel-img d-block"
