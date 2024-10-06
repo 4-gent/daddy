@@ -1,14 +1,17 @@
 from flask import Flask, request, jsonify, session  # Import Flask and related modules for handling requests and responses
 from flask_cors import CORS  # Import CORS for handling Cross-Origin Resource Sharing
 from flask_bcrypt import Bcrypt  # Import Bcrypt for hashing passwords
-from connect import db, users, input_db, responses  # Import database connection and users collection
+from connect import db, users, input_db, responses, scenes  # Import database connection and users collection
 from bot import father
 import os
 from bson import ObjectId
 from dotenv import load_dotenv
 from itertools import zip_longest
+import requests
 
 load_dotenv()
+
+STABILITY_API_KEY = os.getenv('STABILITY_API_KEY')
 
 app = Flask(__name__)  # Create a Flask application instance
 CORS(app, origins=['http://localhost:3000'], supports_credentials=True)  # Enable CORS for the specified origin
@@ -62,12 +65,19 @@ def background():
     if request.method == 'GET':
         user = users.find_one({'_id': ObjectId(session['user_id'])})
 
+        scene = scenes.find_one({'scene_owner': session['user_id']}, sort=[('_id', -1)])
+
         print(user)
         print(user['parent'])
+        print(scene)
 
         if user:
-            new_back_image = user['parent']
+            new_back_image = user['parent'] + "_" + "start"
+            if scene:
+                new_back_image = user['parent'] + "_" + scene['scene']
             return jsonify(new_back_image), 200
+        else:
+            return jsonify({'message': 'User not found'}), 404
 
     else:
         return jsonify({'message': 'Server-side Error'}), 405
@@ -84,14 +94,23 @@ def prompt():
             'firstname': user['first_name'],
             'lastname': user['last_name'],
             'gender': user['gender'],
+            'parent': user['parent'],
             'age': user['age']
         }
 
-        new_input_string = new_input['input'] + ' ' + new_input['firstname'] + ' ' + new_input['lastname'] + ' ' + str(new_input['age']) + ' ' + new_input['gender']
+        new_input_string = new_input['input'] + ' ' + new_input['firstname'] + ' ' + new_input['lastname'] + ' ' + str(new_input['age']) + ' ' + new_input['gender'] + ' ' + new_input['parent']
 
         response = father(new_input_string)
+
+        response_parts = response.split(':')
+
         print(response)
-        return jsonify(response), 200
+        print(response_parts[0])
+        print(response_parts[1])
+        
+        scenes.insert_one({'scene_owner': session['user_id'], 'scene': response_parts[0]})
+
+        return jsonify(response_parts[1]), 200
     else:
         return jsonify({'message': 'Server-side Error'}), 405
     
@@ -108,12 +127,15 @@ def message():
             'firstname': user['first_name'],
             'lastname': user['last_name'],
             'age': user['age'],
+            'parent': user['parent'],
             'gender': user['gender']
         }
 
-        new_message_string = new_message['message'] + ' ' + new_message['firstname'] + ' ' + new_message['lastname'] + ' ' + str(new_message['age']) + ' ' + new_message['gender']
+        new_message_string = new_message['message'] + ' ' + new_message['firstname'] + ' ' + new_message['lastname'] + ' ' + str(new_message['age']) + ' ' + new_message['gender'] + ' ' + new_message['parent']
 
         response = father(new_message_string)
+
+        response = response.split(':')[1]
 
         new_response = {
             'response_owner': session['user_id'],
@@ -121,7 +143,6 @@ def message():
         }
 
         print(new_message)
-        print(new_response)
         input_db.insert_one(new_message)
         responses.insert_one(new_response)
 
