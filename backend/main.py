@@ -84,10 +84,11 @@ def prompt():
             'firstname': user['first_name'],
             'lastname': user['last_name'],
             'gender': user['gender'],
+            'parent': user['parent'],
             'age': user['age']
         }
 
-        new_input_string = new_input['input'] + ' ' + new_input['firstname'] + ' ' + new_input['lastname'] + ' ' + str(new_input['age']) + ' ' + new_input['gender']
+        new_input_string = new_input['input'] + ' ' + new_input['firstname'] + ' ' + new_input['lastname'] + ' ' + str(new_input['age']) + ' ' + new_input['gender'] + ' ' + new_input['parent']
 
         response = father(new_input_string)
         print(response)
@@ -108,10 +109,11 @@ def message():
             'firstname': user['first_name'],
             'lastname': user['last_name'],
             'age': user['age'],
+            'parent': user['parent'],
             'gender': user['gender']
         }
 
-        new_message_string = new_message['message'] + ' ' + new_message['firstname'] + ' ' + new_message['lastname'] + ' ' + str(new_message['age']) + ' ' + new_message['gender']
+        new_message_string = new_message['message'] + ' ' + new_message['firstname'] + ' ' + new_message['lastname'] + ' ' + str(new_message['age']) + ' ' + new_message['gender'] + ' ' + new_message['parent']
 
         response = father(new_message_string)
 
