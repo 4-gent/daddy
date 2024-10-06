@@ -10,7 +10,6 @@ axios.defaults.withCredentials = true;
 export default function Phone() {
     const [input, setInput] = useState('') // State for user input
     const [output, setOutput] = useState([]) // State for AI output
-    const [owner, setOwner] = useState('')
 
     const handleInput = async(e) => {
         e.preventDefault()
@@ -50,6 +49,7 @@ export default function Phone() {
                                 <div className="msg-container">
                                     <div className="msg">
                                         <p key={index}>{item.response}</p>
+                                        <p key={index}>{item.message}</p>
                                     </div>
                                 </div>
                             ))}
