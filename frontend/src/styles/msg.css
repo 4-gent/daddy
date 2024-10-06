@@ -1,4 +1,8 @@
 .msg-body {
+    background-image: url('../styles/library.webp');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: #FFE0B2 !important;
     width: 100vw;
     height: 100vh;
     background-color: rgb(255, 255, 255);
@@ -11,7 +15,7 @@
     position: relative;
     
     margin-left: auto;
-    margin-right: 160px; 
+    margin-right: 15vw; 
     width: 307.8px;      
     height: 666.9px;     
     background-color: #7371ee;
@@ -41,6 +45,7 @@
 
     /* Frontal camera/speaker frame */
     &:before {
+        z-index: 1050;
         top: 0px;
         width: 47.88%;    
         height: 25.65px;    
@@ -58,6 +63,7 @@
 
     /* Speaker */
     i {
+        z-index: 1050;
         top: 0px;
         left: 50%;
         transform: translate(-50%, 5.13px); 
@@ -70,6 +76,7 @@
 
     /* Camera */
     b {
+        z-index: 1050;
         left: 8.55%;  
         top: 0px;
         transform: translate(153.9px, 3.42px); 
@@ -101,9 +108,11 @@
     overflow-y: auto;
     max-height: 86%; /* Limit height to ensure space for input */
     width: 100%;
+    padding-right: 10px;
     box-sizing: border-box;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
+    padding-top: 5vh;
     background-color: rgba(255, 255, 255, 0.8); /* Optional background for messages */
 }
 
@@ -145,6 +154,8 @@
 }
 
 .msg-text {
+    z-index: 0;
+    position: relative;
     background-color: #e0e0e0; /* Light grey background */
     padding: 10px;
     border-radius: 10px;
@@ -155,4 +166,61 @@
     word-wrap: break-word; /* Break long words to avoid overflow */
 }
 
+.msg-text-user {
+    background-color: #0e7afe; /* Light blue background */
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: white; /* Dark text for contrast */
+    word-wrap: break-word; /* Break long words to avoid overflow */
+    margin-left: 10vw;
+}
 
+.logout-button{
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 10vw;
+    height: 60px;
+    margin: 10px 0;
+    padding: 3px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(72, 66, 66);
+
+    color: white;
+
+    transition: 300ms;
+}
+.logout-button:hover{
+    transition: 300ms;
+    width: 11vw;
+    height: 65px;
+    box-shadow: 0px 7px 10px 3px hsla(39, 99%, 54%, 0.7);
+}
+
+.home-button{
+    position: absolute;
+    bottom: 0;
+    left: 2.5vw;
+    width: 45vw;
+    height: 60px;
+    margin: 10px 0;
+    padding: 3px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(72, 66, 66);
+
+    font-size: 1.5rem;
+
+    color: white;
+
+    transition: 300ms;
+}
+.home-button:hover{
+    transition: 300ms;
+    width: 46vw;
+    height: 65px;
+    box-shadow: 0px 7px 10px 3px hsla(39, 99%, 54%, 0.7);
+}

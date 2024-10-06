@@ -13,6 +13,7 @@ export default function Registration() { // Define and export the Registration c
     const [email, setEmail] = useState('') // Declare state variable for email with initial value ''
     const [parent, setParent] = useState('') // Declare state variable for parent with initial value ''
     const [age, setAge] = useState('') // Declare state variable for age with initial value ''
+    const [gender, setGender] = useState('')
 
     const handleRegistration = async(e) => { // Define an asynchronous function to handle registration
         e.preventDefault() // Prevent the default form submission behavior
@@ -23,6 +24,7 @@ export default function Registration() { // Define and export the Registration c
             lastname: last,
             email: email,
             parent: parent,
+            gender: gender,
             age: age
         }
         try{
@@ -76,6 +78,12 @@ export default function Registration() { // Define and export the Registration c
                         <option value="asian">Asian Dad</option>
                         <option value="black">Black Dad</option>
                         <option value="mexican">Mexican Dad</option>
+                    </select>
+                    <select className="register-input" required onChange={(e) => setGender(e.target.value)}>
+                        <option value="" disabled selected>What gender are you</option>
+                        <option value="asian">Female</option>
+                        <option value="black">Male</option>
+                        <option value="mexican">Other</option>
                     </select>
                     <button className="register-button" type='submit'>Register</button> {/* Submit button */}
                 </form>

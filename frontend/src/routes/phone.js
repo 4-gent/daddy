@@ -9,12 +9,6 @@ export default function Phone() {
     const [input, setInput] = useState('') // State for user input
     const [output, setOutput] = useState([]) // State for AI output
 
-    const scrollToBottom = () => {
-        if (msgEndRef.current) {
-            msgEndRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
     const handleInput = async (e) => {
         e.preventDefault();
         try {
@@ -39,20 +33,25 @@ export default function Phone() {
 
     return (
         <div>
-            <nav>
-                <Navigation />
-            </nav>
             <div className="msg-body">
+                <a href="/"><button className='logout-button'>Logout</button></a>
                 <div className="iphone-x">
                     <i>Speaker</i>
                     <b>Camera</b>
                     {/* Scrollable messages container */}
-
                     <div className="msg-container">
                         {output.map((item, index) => (
-                            <div className="msg" key={index}>
-                                <p className="msg-text">{item.response}</p>
-                                <p className="msg-text">{item.message}</p>
+                            <div key={index}>
+                                {item.message && (
+                                    <div className="msg">
+                                        <p className="msg-text-user">{item.message}</p>
+                                    </div>
+                                )}
+                                {item.response && (
+                                    <div className="msg">
+                                        <p className="msg-text">{item.response}</p>
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </div>
@@ -69,6 +68,7 @@ export default function Phone() {
                         </div>
                     </form>
                 </div>
+                <a href="/faceToFace"><button className='home-button'>Go Home</button></a>
             </div>
         </div>
     );

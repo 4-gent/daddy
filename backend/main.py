@@ -45,6 +45,7 @@ def register():
             'last_name': data['lastname'],
             'email': data['email'],
             'parent': data['parent'],
+            'gender': data['gender'],
             'age': data['age']
         }
 
@@ -55,6 +56,21 @@ def register():
             return jsonify({'message': 'Username already exists'}), 409  # Return conflict message with status code 409
     else:
         return jsonify({'message': 'Method not allowed'}), 405  # Return method not allowed message with status code 405
+
+@app.route('/background', methods=['GET'])  # Define the image route with GET and POST methods
+def background():
+    if request.method == 'GET':
+        user = users.find_one({'_id': ObjectId(session['user_id'])})
+
+        print(user)
+        print(user['parent'])
+
+        if user:
+            new_back_image = user['parent']
+            return jsonify(new_back_image), 200
+
+    else:
+        return jsonify({'message': 'Server-side Error'}), 405
 
 @app.route('/prompt', methods=['GET', 'POST'])
 def prompt():
@@ -67,10 +83,11 @@ def prompt():
             'input': data['input'],
             'firstname': user['first_name'],
             'lastname': user['last_name'],
+            'gender': user['gender'],
             'age': user['age']
         }
 
-        new_input_string = new_input['input'] + ' ' + new_input['firstname'] + ' ' + new_input['lastname'] + ' ' + str(new_input['age'])
+        new_input_string = new_input['input'] + ' ' + new_input['firstname'] + ' ' + new_input['lastname'] + ' ' + str(new_input['age']) + ' ' + new_input['gender']
 
         response = father(new_input_string)
         print(response)
@@ -90,10 +107,11 @@ def message():
             'message': data['input'],
             'firstname': user['first_name'],
             'lastname': user['last_name'],
-            'age': user['age']
+            'age': user['age'],
+            'gender': user['gender']
         }
 
-        new_message_string = new_message['message'] + ' ' + new_message['firstname'] + ' ' + new_message['lastname'] + ' ' + str(new_message['age'])
+        new_message_string = new_message['message'] + ' ' + new_message['firstname'] + ' ' + new_message['lastname'] + ' ' + str(new_message['age']) + ' ' + new_message['gender']
 
         response = father(new_message_string)
 
