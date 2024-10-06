@@ -106,17 +106,18 @@ def message():
         input_db.insert_one(new_message)
         responses.insert_one(new_response)
 
-        message_response = responses.find_one({'response_owner': session['user_id']})
-        return jsonify({'message': message_response['response']}), 200
+        return jsonify({'message': 'Message stored successfully'}), 200
     else:
         return jsonify({'message': 'Server-side Error'}), 405
 
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
-    if request.method == 'POST':
-        message_response = responses.find_one({'message_owner': session['user_id']})
-        print(message_response)
-        return jsonify({'message': message_response['response']}), 200
+    if request.method == 'GET':
+        message_responses = responses.find({'response_owner': session['user_id']})
+        message_list = list(message_responses)  # Convert cursor to list
+        for message in message_list:
+            message['_id'] = str(message['_id'])  # Convert ObjectId to string
+        return jsonify(message_list), 200
     else:
         return jsonify({'message': 'Server-side Error'}), 405
 
