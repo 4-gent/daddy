@@ -10,35 +10,31 @@ axios.defaults.withCredentials = true;
 export default function Phone() {
     const [input, setInput] = useState('') // State for user input
     const [output, setOutput] = useState([]) // State for AI output
-    const [messages, setMessages] = useState(null)
+    const [owner, setOwner] = useState('')
 
     const handleInput = async(e) => {
         e.preventDefault()
         try{
             const response = await axios.post('http://localhost:4000/message', { input }, { withCredentials: true })
             console.log(response.data)
-            setMessages(response.data)
+            if(response.status === 200)
+                window.location.reload()
         } catch(error){
             console.error('Error message:', error.message)
         }
     }
 
     useEffect(() => {
-        if(messages){
-            setOutput(prevOutput => [...prevOutput, messages])
-        }
-    }, [messages])
-
-    useEffect(() => {
         axios.get('http://localhost:4000/chat', { withCredentials: true })
             .then(response => {
-                console.log(response.data)
-                setOutput(response.data)
+                console.log(response.data);
+                setOutput(response.data);
             })
             .catch(error => {
-                console.error('Error message:', error.message)
-            })
-    }, []) 
+                console.error('Error message:', error.message);
+            });
+    }, []); // Run this effect only once when the component mounts
+
 
     return (
         <div>
@@ -53,7 +49,7 @@ export default function Phone() {
                             {output.map((item, index) => (
                                 <div className="msg-container">
                                     <div className="msg">
-                                        <p key={index}>{item.message}</p>
+                                        <p key={index}>{item.response}</p>
                                     </div>
                                 </div>
                             ))}
