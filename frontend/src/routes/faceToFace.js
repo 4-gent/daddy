@@ -4,9 +4,9 @@ import '../styles/faceToFace.css'
 import axios from 'axios'
 
 
-import black from '../styles/black.webp'
-import asian from '../styles/asian.webp'
-import mexican from '../styles/mexican.webp'
+import black from '../styles/scenes/black.webp'
+import asian from '../styles/scenes/asian.webp'
+import mexican from '../styles/scenes/mexican.webp'
 
 
 axios.defaults.withCredentials = true;

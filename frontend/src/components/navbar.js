@@ -33,6 +33,10 @@ export default function Navigation() {
                             <Nav.Link className='nav-text' href='/register'>Register</Nav.Link>
                             {/* Nav.Link component for the Phone page */}
                             <Nav.Link className='nav-text' href='/phone'>Phone</Nav.Link>
+                            {/* Nav.Link component for the Main Phone page */}
+                            <Nav.Link className='nav-text' href='/mainscreen'>Main</Nav.Link>
+                            {/* Nav.Link component for the Call page*/}
+                            <Nav.Link className='nav-text' href='/callphone'>Call</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
