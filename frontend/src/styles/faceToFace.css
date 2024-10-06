@@ -13,32 +13,84 @@
     min-height: 199px;
     max-height: 200px;
     padding: 1vh;
+    padding-top: 3vh;
     background-color: rgb(32, 31, 31);
+    background-image: linear-gradient(60deg, #7371ee 1%, #a1d9d6 100%);
     color: white;  
-    border-radius: 5px;
+    border-radius: 20px;
     box-shadow: 0px 7px 10px 3px rgba(37, 37, 37, 0.7);
     overflow-y: auto;
-    opacity: 0.75;
+    opacity: 0.9;
+    border: ridge;
+    border-color: black;
+    z-index: 11;
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Frontal camera/speaker frame */
+    &:before {
+        top: 0px;
+        width: 47.88%;    
+        height: 25.65px;    
+        background-color: #1f1f1f;
+        border-radius: 0px 0px 34.2px 34.2px; 
+    }
+
+    i,
+    b,
+    span {
+        position: absolute;
+        display: block;
+        color: transparent;
+    }
+
+    /* Speaker */
+    i {
+        top: 0px;
+        left: 50%;
+        transform: translate(-50%, 5.13px); 
+        height: 6.84px;  
+        width: 12.825%;   
+        background-color: #101010;
+        border-radius: 6.84px; 
+        box-shadow: inset 0px -2.565px 2.565px 0px rgba(256, 256, 256, 0.2); 
+    }
+
+    /* Camera */
+    b {
+        left: 8.55%;  
+        top: 0px;
+        transform: translate(153.9px, 3.42px); 
+        width: 10.26px;    
+        height: 10.26px;   
+        background-color: #101010;
+        border-radius: 10.26px; 
+        box-shadow: inset 0px -2.565px 1.71px 0px rgba(256, 256, 256, 0.2); 
+        
+        &:after {
+            content: '';
+            position: absolute;
+            background-color: #2d4d76;
+            width: 5.13px;   
+            height: 5.13px;  
+            top: 2.565px;     
+            left: 2.565px;    
+            display: block;
+            border-radius: 3.42px;
+            box-shadow: inset 0px -1.71px 1.71px rgba(0, 0, 0, 0.5); 
+        }
+    }
 }
 
-.faceToFace-container{
-    width: 100vw;
-    text-align: left;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: rgb(32, 31, 31);
-    width: 40vw;
-    padding: 5vh;
-    height: auto;
-    margin: 0 auto;
-    margin-top: 15vh;
-
+.daddyOutput-container:hover{
     transition: 300ms;
-
-    border-radius: 5px;
-    box-shadow: 0px 7px 10px 3px rgba(37, 37, 37, 0.7);
+    box-shadow: 0px 7px 10px 3px #FFE0B2;
 }
 
 .name-display{
@@ -51,28 +103,25 @@
     min-height: 49px;
     resize: none;
     background-color: rgb(32, 31, 31);
+    background-image: linear-gradient(60deg, #7371ee 1%, #a1d9d6 100%);
     color: white;
     position: fixed;  
     bottom: 310px;
-    border-radius: 5px;
+    border: ridge;
+    border-radius: 1000px;
+    border-color: black;
     box-shadow: 0px 7px 10px 3px rgba(37, 37, 37, 0.7);
-    opacity: 0.75;  
+    opacity: 0.9;  
+    z-index: 12;
 }
 
-.ai-text-display{
-    position: fixed;
-    bottom: 100px;
-    width: calc(100% - 40px); /* 20px margin on each side */
-    margin: 0 20px;
-    min-height: 199px;
-    max-height: 200px;
-    resize: none;
-    padding: 1vh;
-    background-color: rgb(32, 31, 31);
-    color: white;  
-    border-radius: 5px;
-    box-shadow: 0px 7px 10px 3px rgba(37, 37, 37, 0.7);
-    opacity: 0.75;
+body{
+    color: white;
+}
+
+.name-display:hover{
+    transition: 300ms;
+    box-shadow: 0px 7px 10px 3px #FFE0B2;
 }
 
 .user-input{
@@ -86,6 +135,7 @@
     align-items: center;
     bottom: 30px; /* Adjust this value to change how far it is from the bottom */
     background-color: rgb(32, 31, 31);
+    background-image: linear-gradient(60deg, #7371ee 1%, #a1d9d6 100%);
     color: white;
     padding: 1vh;
     height: 50px;
@@ -93,21 +143,31 @@
     margin-top: 1vh;
 
     transition: 300ms;
-
-    border-radius: 5px;
+    border: ridge;
+    border-radius: 20px;
+    border-color: black;   
     box-shadow: 0px 7px 10px 3px rgba(37, 37, 37, 0.7);
-    opacity: 0.75;   
+    opacity: 0.9;   
+    z-index: 10;
 }
 
+::placeholder{
+    color: white;
+    opacity: 1;
+}
 .user-input:hover{
     transition: 300ms;
-    box-shadow: 0px 7px 10px 3px hsla(39, 99%, 54%, 0.7);
+    box-shadow: 0px 7px 10px 3px #FFE0B2;
 }
 
 .send-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100px;
     height: 50px;
     background-color: rgb(32, 31, 31);
+    background-image: linear-gradient(60deg, #7371ee 1%, #a1d9d6 100%);
     color: white;
     border: none;
     padding: 1vh;
@@ -115,19 +175,54 @@
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 100px;
     box-shadow: 0px 7px 10px 3px rgba(37, 37, 37, 0.7);
     position: fixed;
     transform: translate(-50%);
     bottom: 30px;
     left: calc(50% + 75px);
     transform: translateX(-50%);
-    opacity: 0.75;   
+    opacity: 0.9;   
+    z-index: 100;
+    border: ridge;
+    border-color: black;
 }
 
-.send-button:hover{  
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.send-button:hover{
     transition: 300ms;
-    box-shadow: 0px 7px 10px 3px hsla(39, 99%, 54%, 0.7);
+    box-shadow: 0px 7px 10px 3px #FFE0B2;
+}
+.send-button:hover::after, .send-button:hover::before{  
+    transition: 300ms;
+    content:'';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle),transparent 70%,#FFE0B2);
+    padding: 10px;
+    border-radius: 98px;
+    animation: 3s spin linear infinite;
+    z-index: -1;
+}
+
+.send-button::before{
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+
+@keyframes spin{
+    from{
+        --angle: 0deg;
+    }
+    to{
+        --angle: 360deg;
+    }
 }
 
 .leave-button{
@@ -137,21 +232,23 @@
     align-items: center;
 
     background-color: rgb(32, 31, 31);
+    background-image: linear-gradient(60deg, #7371ee 1%, #a1d9d6 100%);
     color: white;
     
     padding: 1vh;
     
-
+    border: ridge;
     transition: 300ms;
-
-    border-radius: 5px;
+    border-color: black;
+    border-radius: 100px;
     box-shadow: 0px 7px 10px 3px rgba(37, 37, 37, 0.7);
     position: fixed;
     top: 10px;
     right: 10px;
+    opacity: 0.9;
 }
 
 .leave-button:hover{
     transition: 300ms;
-    box-shadow: 0px 7px 10px 3px hsla(39, 99%, 54%, 0.7);
+    box-shadow: 0px 7px 10px 3px #FFE0B2;
 }
