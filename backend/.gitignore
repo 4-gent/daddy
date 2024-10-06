@@ -1,2 +1,7 @@
 .env
 __pycache__
+bin
+flask_session
+lib
+share
+pyvenv.cfg
