@@ -5,7 +5,7 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
-export default function Phone() {
+export default function Phone({ accessToken }) {
     const [input, setInput] = useState('') // State for user input
     const [output, setOutput] = useState([]) // State for AI output
 
