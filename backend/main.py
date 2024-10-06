@@ -6,6 +6,7 @@ from bot import father
 import os
 from bson import ObjectId
 from dotenv import load_dotenv
+from itertools import zip_longest
 
 load_dotenv()
 
@@ -113,11 +114,20 @@ def message():
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
     if request.method == 'GET':
-        message_responses = responses.find({'response_owner': session['user_id']})
-        message_list = list(message_responses)  # Convert cursor to list
-        for message in message_list:
+        message_responses = list(responses.find({'response_owner': session['user_id']}))
+        message_input = list(input_db.find({'message_owner': session['user_id']}))
+        for message in message_responses + message_input:
             message['_id'] = str(message['_id'])  # Convert ObjectId to string
-        return jsonify(message_list), 200
+        
+        combined_messages = []
+
+        for response, input_msg in zip_longest(message_responses, message_input):
+            if input_msg:
+                combined_messages.append(input_msg)
+            if response:
+                combined_messages.append(response)
+
+        return jsonify(combined_messages), 200
     else:
         return jsonify({'message': 'Server-side Error'}), 405
 

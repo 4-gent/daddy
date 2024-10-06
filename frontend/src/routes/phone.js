@@ -6,8 +6,8 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 export default function Phone() {
-    const [input, setInput] = useState(''); // State for user input
-    const [output, setOutput] = useState([]); // State for AI output
+    const [input, setInput] = useState('') // State for user input
+    const [output, setOutput] = useState([]) // State for AI output
 
     const scrollToBottom = () => {
         if (msgEndRef.current) {
@@ -52,6 +52,7 @@ export default function Phone() {
                         {output.map((item, index) => (
                             <div className="msg" key={index}>
                                 <p className="msg-text">{item.response}</p>
+                                <p className="msg-text">{item.message}</p>
                             </div>
                         ))}
                     </div>
@@ -67,7 +68,6 @@ export default function Phone() {
                             <button type="submit" className="send-btn">Send</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
