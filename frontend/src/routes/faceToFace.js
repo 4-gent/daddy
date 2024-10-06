@@ -74,7 +74,7 @@ export default function FaceToFace() {
                     <button type="submit" className='send-button'>Send</button>
                 </div>
             </form>
-            <a href='/'><button className='leave-button'>Leave</button></a>
+            <a href='/phone'><button className='leave-button'>Leave</button></a>
         </div>
     )
 }

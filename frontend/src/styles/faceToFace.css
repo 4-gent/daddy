@@ -24,68 +24,6 @@
     border: ridge;
     border-color: black;
     z-index: 11;
-
-    &:before,
-    &:after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    /* Frontal camera/speaker frame */
-    &:before {
-        top: 0px;
-        width: 47.88%;    
-        height: 25.65px;    
-        background-color: #1f1f1f;
-        border-radius: 0px 0px 34.2px 34.2px; 
-    }
-
-    i,
-    b,
-    span {
-        position: absolute;
-        display: block;
-        color: transparent;
-    }
-
-    /* Speaker */
-    i {
-        top: 0px;
-        left: 50%;
-        transform: translate(-50%, 5.13px); 
-        height: 6.84px;  
-        width: 12.825%;   
-        background-color: #101010;
-        border-radius: 6.84px; 
-        box-shadow: inset 0px -2.565px 2.565px 0px rgba(256, 256, 256, 0.2); 
-    }
-
-    /* Camera */
-    b {
-        left: 8.55%;  
-        top: 0px;
-        transform: translate(153.9px, 3.42px); 
-        width: 10.26px;    
-        height: 10.26px;   
-        background-color: #101010;
-        border-radius: 10.26px; 
-        box-shadow: inset 0px -2.565px 1.71px 0px rgba(256, 256, 256, 0.2); 
-        
-        &:after {
-            content: '';
-            position: absolute;
-            background-color: #2d4d76;
-            width: 5.13px;   
-            height: 5.13px;  
-            top: 2.565px;     
-            left: 2.565px;    
-            display: block;
-            border-radius: 3.42px;
-            box-shadow: inset 0px -1.71px 1.71px rgba(0, 0, 0, 0.5); 
-        }
-    }
 }
 
 .daddyOutput-container:hover{
@@ -183,7 +121,7 @@ body{
     left: calc(50% + 75px);
     transform: translateX(-50%);
     opacity: 0.9;   
-    z-index: 100;
+    z-index: 1050 !important;
     border: ridge;
     border-color: black;
 }
@@ -196,7 +134,6 @@ body{
 
 .send-button:hover{
     transition: 300ms;
-    box-shadow: 0px 7px 10px 3px #FFE0B2;
 }
 .send-button:hover::after, .send-button:hover::before{  
     transition: 300ms;
@@ -208,7 +145,7 @@ body{
     padding: 10px;
     border-radius: 98px;
     animation: 3s spin linear infinite;
-    z-index: -1;
+    z-index: 0 !important;
 }
 
 .send-button::before{

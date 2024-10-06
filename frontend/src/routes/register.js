@@ -81,9 +81,9 @@ export default function Registration() { // Define and export the Registration c
                     </select>
                     <select className="register-input" required onChange={(e) => setGender(e.target.value)}>
                         <option value="" disabled selected>What gender are you</option>
-                        <option value="asian">Female</option>
-                        <option value="black">Male</option>
-                        <option value="mexican">Other</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
                     </select>
                     <button className="register-button" type='submit'>Register</button> {/* Submit button */}
                 </form>
