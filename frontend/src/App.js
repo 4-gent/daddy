@@ -8,15 +8,24 @@ import FaceToFace from './routes/faceToFace'
 import Mainscreen from './routes/mainscreen'
 import Call from './routes/callphone';
 import { getAccessToken } from './routes/hume';
-import ClientComponent from './routes/clientComponent';
+import ClientComponent from './components/humeClient';
 
 export default function App() {
 
-  const [accessToken, setAccessToken] = useState(null);
+  // const [accessToken, setAccessToken] = useState(null);
 
-  useEffect(() => {
-    getAccessToken().then((token) => setAccessToken(token));
-  }, []);
+  // useEffect(() => {
+  //   try {
+  //     getAccessToken().then((token) => {
+  //       if (token) {
+  //         setAccessToken(token);
+  //         console.log('Access token:', token);
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.error('Error getting access token:', error);
+  //   }
+  // }, []);
 
   return (
     <Router>
@@ -25,7 +34,7 @@ export default function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Registration />} />
         <Route exact path="/phone" element={<Phone />} />
-        <Route path="/" element={<ClientComponent accessToken={accessToken} />} />
+        <Route path="/" element={<ClientComponent />} />
         <Route exact path="/facetoface" element={<FaceToFace />} />
         <Route exact path="/mainscreen" element={<Mainscreen/>} />
         <Route exact path="/callphone" element={<Call/>}/>
