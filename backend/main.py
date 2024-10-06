@@ -7,8 +7,11 @@ import os
 from bson import ObjectId
 from dotenv import load_dotenv
 from itertools import zip_longest
+import requests
 
 load_dotenv()
+
+STABILITY_API_KEY = os.getenv('STABILITY_API_KEY')
 
 app = Flask(__name__)  # Create a Flask application instance
 CORS(app, origins=['http://localhost:3000'], supports_credentials=True)  # Enable CORS for the specified origin
@@ -60,14 +63,40 @@ def register():
 @app.route('/background', methods=['GET'])  # Define the image route with GET and POST methods
 def background():
     if request.method == 'GET':
-        user = users.find_one({'_id': ObjectId(session['user_id'])})
+        # user = users.find_one({'_id': ObjectId(session['user_id'])})
 
-        print(user)
-        print(user['parent'])
+        # print(user)
+        # print(user['parent'])
 
-        if user:
-            new_back_image = user['parent']
-            return jsonify(new_back_image), 200
+        # if user:
+        #     new_back_image = user['parent']
+        #     return jsonify(new_back_image), 200
+        place = "backyard"
+        response = requests.post(
+            f"https://api.stability.ai/v2beta/stable-image/edit/search-and-replace",
+            headers={
+                "authorization": f'Bearer {STABILITY_API_KEY}',
+                "accept": "image/*"
+            },
+            files={
+                "image": open("./assets/asian.webp", "rb"),
+                # "mask": open("./assets/mask-of-asian.webp", "rb"),
+            },
+            data={
+                "prompt": f'change the background to be in the {place} instead of his current location. The backgroudn is everything behind the asian male with the broom',
+                "search_prompt": "asian male with the broom",
+                "output_format": "webp",
+            },
+        )
+
+        if response.status_code == 200:
+            with open(f'./assets/asian-in-{place}.webp', 'wb') as file:
+                file.write(response.content)
+                print("success")
+            print("success1")
+            return jsonify(os.path.abspath(f'./assets/asian-in-{place}.webp')), 200
+        else:
+            raise Exception(str(response.json()))
 
     else:
         return jsonify({'message': 'Server-side Error'}), 405

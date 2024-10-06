@@ -1,5 +1,5 @@
 // Importing the necessary whatevers
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../styles/faceToFace.css'
 import axios from 'axios'
 
@@ -51,9 +51,11 @@ export default function FaceToFace() {
     useEffect(() => {
         axios.get('http://localhost:4000/background', { withCredentials: true })
             .then((response) => {
+                // console.log(response.data)
+                // const imageUrl = imageMapping[response.data] || ''
+                // setImage(imageUrl)
+                setImage(response.data)
                 console.log(response.data)
-                const imageUrl = imageMapping[response.data] || ''
-                setImage(imageUrl)
             })
             .catch((error) => {
                 console.error('Error message:', error.message)
