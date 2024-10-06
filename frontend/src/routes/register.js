@@ -37,7 +37,7 @@ export default function Registration() { // Define and export the Registration c
                     NotificationManager.success('Registration successful!') // Show success notification if registration is successful
                     setTimeout(() => {
                         window.location.href = '/login' // Redirect to the login page after 3 seconds
-                    }, 3000); // 3000 milliseconds = 3 seconds
+                    }, 1500); // 3000 milliseconds = 3 seconds
                 } // Check if the response status is 200 (OK)
                 else{
                     NotificationManager.error('Registration failed, please try again!') // Show error notification if registration failed

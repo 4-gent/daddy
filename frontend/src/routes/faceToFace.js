@@ -1,21 +1,39 @@
 // Importing the necessary whatevers
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../styles/faceToFace.css'
 import axios from 'axios'
 
 
-import black from '../styles/black.webp'
-import asian from '../styles/asian.webp'
-import mexican from '../styles/mexican.webp'
+import black from '../styles/scenes/black.webp'
+import black_Backyard from '../styles/scenes/black_backyard.webp'
+import black_Kitchen from '../styles/scenes/black_kitchen.webp'
+import black_Livingroom from '../styles/scenes/black_livingroom.webp'
+import asian from '../styles/scenes/asian.webp'
+import asian_Backyard from '../styles/scenes/asian_backyard.webp'
+import asian_Kitchen from '../styles/scenes/asian_kitchen.webp'
+import asian_Livingroom from '../styles/scenes/asian_livingroom.webp'
+import mexican from '../styles/scenes/mexican.webp'
+import mexican_Backyard from '../styles/scenes/modelo.png'
+import mexican_Kitchen from '../styles/scenes/bbq.png'
+import mexican_Livingroom from '../styles/scenes/remotedad.webp'
 
 
 axios.defaults.withCredentials = true;
 
 
 const imageMapping = {
-    'black': black,
-    'asian': asian,
-    'mexican': mexican
+    'black_start': black,
+    'black_Backyard': black_Backyard,
+    'black_Kitchen': black_Kitchen,
+    'black_Livingroom': black_Livingroom,
+    'asian_start': asian,
+    'asian_Backyard': asian_Backyard,
+    'asian_Kitchen': asian_Kitchen,
+    'asian_Livingroom': asian_Livingroom,
+    'mexican_start': mexican,
+    'mexican_Backyard': mexican_Backyard,
+    'mexican_Kitchen': mexican_Kitchen,
+    'mexican_Livingroom': mexican_Livingroom,
 }
 
 
