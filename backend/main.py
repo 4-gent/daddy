@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, session  # Import Flask and related modules for handling requests and responses
 from flask_cors import CORS  # Import CORS for handling Cross-Origin Resource Sharing
 from flask_bcrypt import Bcrypt  # Import Bcrypt for hashing passwords
-from connect import db, users, input_db, responses  # Import database connection and users collection
+from connect import db, users, input_db, responses, scenes  # Import database connection and users collection
 from bot import father
 import os
 from bson import ObjectId
@@ -63,40 +63,21 @@ def register():
 @app.route('/background', methods=['GET'])  # Define the image route with GET and POST methods
 def background():
     if request.method == 'GET':
-        # user = users.find_one({'_id': ObjectId(session['user_id'])})
+        user = users.find_one({'_id': ObjectId(session['user_id'])})
 
-        # print(user)
-        # print(user['parent'])
+        scene = scenes.find_one({'scene_owner': session['user_id']}, sort=[('_id', -1)])
 
-        # if user:
-        #     new_back_image = user['parent']
-        #     return jsonify(new_back_image), 200
-        place = "backyard"
-        response = requests.post(
-            f"https://api.stability.ai/v2beta/stable-image/edit/search-and-replace",
-            headers={
-                "authorization": f'Bearer {STABILITY_API_KEY}',
-                "accept": "image/*"
-            },
-            files={
-                "image": open("./assets/asian.webp", "rb"),
-                # "mask": open("./assets/mask-of-asian.webp", "rb"),
-            },
-            data={
-                "prompt": f'change the background to be in the {place} instead of his current location. The backgroudn is everything behind the asian male with the broom',
-                "search_prompt": "asian male with the broom",
-                "output_format": "webp",
-            },
-        )
+        print(user)
+        print(user['parent'])
+        print(scene)
 
-        if response.status_code == 200:
-            with open(f'./assets/asian-in-{place}.webp', 'wb') as file:
-                file.write(response.content)
-                print("success")
-            print("success1")
-            return jsonify(os.path.abspath(f'./assets/asian-in-{place}.webp')), 200
+        if user:
+            new_back_image = user['parent'] + "_" + "start"
+            if scene:
+                new_back_image = user['parent'] + "_" + scene['scene']
+            return jsonify(new_back_image), 200
         else:
-            raise Exception(str(response.json()))
+            return jsonify({'message': 'User not found'}), 404
 
     else:
         return jsonify({'message': 'Server-side Error'}), 405
@@ -120,8 +101,16 @@ def prompt():
         new_input_string = new_input['input'] + ' ' + new_input['firstname'] + ' ' + new_input['lastname'] + ' ' + str(new_input['age']) + ' ' + new_input['gender'] + ' ' + new_input['parent']
 
         response = father(new_input_string)
+
+        response_parts = response.split(':')
+
         print(response)
-        return jsonify(response), 200
+        print(response_parts[0])
+        print(response_parts[1])
+        
+        scenes.insert_one({'scene_owner': session['user_id'], 'scene': response_parts[0]})
+
+        return jsonify(response_parts[1]), 200
     else:
         return jsonify({'message': 'Server-side Error'}), 405
     
@@ -146,13 +135,14 @@ def message():
 
         response = father(new_message_string)
 
+        response = response.split(':')[1]
+
         new_response = {
             'response_owner': session['user_id'],
             'response': response
         }
 
         print(new_message)
-        print(new_response)
         input_db.insert_one(new_message)
         responses.insert_one(new_response)
 

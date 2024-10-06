@@ -26,7 +26,7 @@ export default function Login() {
             NotificationManager.success('Login successful!') // Displaying success notification
             setTimeout(() => {
                 window.location.href = '/phone' // Redirecting to the main page after 3 seconds
-            }, 3000) // 3000 milliseconds = 3 seconds
+            }, 1500) // 3000 milliseconds = 3 seconds
         } catch (e){
             if(e.response.status === 401){
                 NotificationManager.error('Invalid credentials, please try again!') // Displaying error notification

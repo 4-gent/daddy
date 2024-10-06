@@ -4,13 +4,13 @@ import './styles/main.css'
 // Importing the Navigation component from the components/navbar file
 import Carousel from 'react-bootstrap/carousel'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import asian from './styles/asian.webp'
-import black from './styles/black.webp'
-import mexican from './styles/mexican.webp'
-import logo from './styles/logo.png'
-import remotedad from './styles/remotedad.webp'
-import bbq from './styles/bbq.png'
-import modelo from './styles/modelo.png'
+import asian from './styles/scenes/asian.webp'
+import black from './styles/scenes/black.webp'
+import mexican from './styles/scenes/mexican.webp'
+import logo from './styles/images/logo.png'
+import remotedad from './styles/scenes/remotedad.webp'
+import bbq from './styles/scenes/bbq.png'
+import modelo from './styles/scenes/modelo.png'
 
 // Exporting the Main function as the default export
 export default function Main() {
