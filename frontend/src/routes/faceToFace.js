@@ -2,13 +2,28 @@
 import React, { useState, useRef, useEffect } from 'react'
 import '../styles/faceToFace.css'
 import axios from 'axios'
+
+
+import black from '../styles/black.webp'
+import asian from '../styles/asian.webp'
+import mexican from '../styles/mexican.webp'
+
+
 axios.defaults.withCredentials = true;
+
+
+const imageMapping = {
+    'black': black,
+    'asian': asian,
+    'mexican': mexican
+}
 
 
 // Exporting the Main function as the default export
 export default function FaceToFace() {
     const [input, setInput] = useState('') // State for user input
     const [output, setOutput] = useState('') // State for AI output
+    const [image, setImage] = useState('') // State for background image
 
     const handleInput = async(e) => {
         e.preventDefault()
@@ -33,8 +48,20 @@ export default function FaceToFace() {
         }
     }
 
+    useEffect(() => {
+        axios.get('http://localhost:4000/background', { withCredentials: true })
+            .then((response) => {
+                console.log(response.data)
+                const imageUrl = imageMapping[response.data] || ''
+                setImage(imageUrl)
+            })
+            .catch((error) => {
+                console.error('Error message:', error.message)
+            })
+    }, [])
+
     return (
-        <div className='FaceToFace-body'>
+        <div className='FaceToFace-body' style={{ backgroundImage: `url(${image})` }}>
             {/* Input section */}
             <form onSubmit={handleInput}>
                 <div className='input-section d-flex flex-column align-items-center'>
