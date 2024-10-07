@@ -1,23 +1,25 @@
 // ./components/Controls.tsx
 "use client";
 import { useVoice, VoiceReadyState } from "@humeai/voice-react";
+import '../styles/call.css';
+
 export default function Controls() {
   const { connect, disconnect, readyState } = useVoice();
 
   if (readyState === VoiceReadyState.OPEN) {
     return (
-      <button
+      <button className="call-btn"
         onClick={() => {
           disconnect();
         }}
       >
-        End Session
+        End Call
       </button>
     );
   }
 
   return (
-    <button
+    <button className="call-btn"
       onClick={() => {
         connect()
           .then(() => {
@@ -28,7 +30,7 @@ export default function Controls() {
           });
       }}
     >
-      Start Session
+      Start Call
     </button>
   );
 }

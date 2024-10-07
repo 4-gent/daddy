@@ -1,8 +1,10 @@
 import React, { useState, useEffect} from 'react';
 import '../styles/call.css';
-import Navigation from '../components/navbar'
+import call from '../styles/images/calllogo.png';
+
 import ClientComponent from "../components/humeClient";
 import { fetchAccessToken } from "hume";
+
 
 export default function Call() {
 
@@ -37,31 +39,28 @@ export default function Call() {
     return(
         <div>
             <div className='call-body'>
-                <nav>
-                    <Navigation /> {/* Rendering the Navigation component */}
-                </nav>
-                <ClientComponent accessToken={accessToken}/>
+                <br />
+                <br />
                 <div className="callscreen-x">
                     <i>Speaker</i>
                     <b>Camera</b>
                     {/* Profile Picture */}
                     <div className="profile-container">
                         <img
-                            src="https://via.placeholder.com/150" // Example profile image
+                            src={call} // Example profile image
                             alt="Profile"
                             className="profile-pic"
                         />
-                        <p className="caller-name">Daddae</p>
-                        <p className="call-status">Calling...</p>
-
+                        <p className="caller-name">Dad</p>    
+                        <p className="call-status">Ready to Call...</p>
                         {/* Call Control Buttons */}
                     <div className="call-buttons">
-                        <button className="call-btn">Mute</button>
-                        <button className="call-btn">Speaker</button>
-                        <button className="call-btn end-call-btn">End Call</button>
+                        <ClientComponent accessToken={accessToken}/>
                     </div>
+                    <a className='call-btn' href='/mainscreen'><button className='call-btn'>Leave</button></a>
                     </div>
                 </div>
+                <a href="/faceToFace"><button className='home-button'>Go Home</button></a>
             </div>
         </div>
     )

@@ -34,7 +34,7 @@ export default function Phone({ accessToken }) {
     return (
         <div>
             <div className="msg-body">
-                <a href="/"><button className='logout-button'>Logout</button></a>
+                <a href="/mainscreen"><button className='logout-button'>Leave</button></a>
                 <div className="iphone-x">
                     <i>Speaker</i>
                     <b>Camera</b>

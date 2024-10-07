@@ -7,15 +7,17 @@ export default function Mainscreen() {
     return(
         <div>
             <div className='phonemain-body'>
-                <nav>
-                    <Navigation /> {/* Rendering the Navigation component */}
-                </nav>
+                <a href="/"><button className='logout-button'>Logout</button></a>
+
+                <br />
+                <br />
+
                 <div className="phonemain-x">
                     <i>Speaker</i>
                     <b>Camera</b>
                     <div className="center-buttons">
-                        <button className="phone-call-btn">Phone Call</button>
-                        <button className="text-msg-btn">Message</button>
+                        <a href='/callphone'><button className="phone-call-btn">Phone Call</button></a>
+                        <a href='/phone'><button className="text-msg-btn">Message</button></a>
                     </div>
                 </div>
             </div>

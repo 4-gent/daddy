@@ -1,4 +1,7 @@
 .call-body{
+    background-image: url('./user-scenes/football.webp');
+    background-repeat: no-repeat;
+    background-size: contain;
     width: 100vw;
     height: 100vh;
     background-color: #FFE0B2;
@@ -9,7 +12,6 @@
     
     margin-left: auto;
     margin-right: 15vw; 
-    margin-top: 27.5px;
     width: 307.8px;      
     height: 666.9px;     
     background-color: #7371ee;
@@ -147,6 +149,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: background-color 300ms ease;
+    text-decoration: none;
 }
 
 .end-call-btn {
