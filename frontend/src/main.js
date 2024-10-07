@@ -24,7 +24,7 @@ export default function Main() {
     return (
         <div className='main-body'>
             <div className='d-flex flex-row justify-content-between'>
-                <Carousel fade controls={false} interval={3000} indicators={false}>
+                <Carousel fade slide={false} controls={false} interval={3000} indicators={false}>
                     {[asian, black, mexican, remotedad, bbq, modelo].map((src, index) => (
                         <Carousel.Item key={index}>
                             <img className="carousel-img d-block" src={src} alt={`Slide ${index + 1}`} />

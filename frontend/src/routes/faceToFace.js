@@ -16,6 +16,8 @@ import mexican from '../styles/scenes/mexican.webp'
 import mexican_Backyard from '../styles/scenes/modelo.png'
 import mexican_Kitchen from '../styles/scenes/bbq.png'
 import mexican_Livingroom from '../styles/scenes/remotedad.webp'
+import Fade from 'react-reveal/Fade'
+
 
 axios.defaults.withCredentials = true;
 
@@ -80,6 +82,7 @@ export default function FaceToFace() {
         <div className='FaceToFace-body' style={{ backgroundImage: `url(${image})` }}>
             {/* Input section */}
             <form onSubmit={handleInput}>
+
                 <div className='input-section d-flex flex-column align-items-center'>
                     <p className='name-display'>Daddy</p>
                         <br />

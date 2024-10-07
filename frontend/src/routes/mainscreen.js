@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import '../styles/phonemain.css';
 import Navigation from '../components/navbar'
 import axios from 'axios';
+import Fade from 'react-reveal/Fade'
 
 export default function Mainscreen() {
     return(
@@ -11,7 +12,7 @@ export default function Mainscreen() {
 
                 <br />
                 <br />
-
+                <Fade top>
                 <div className="phonemain-x">
                     <i>Speaker</i>
                     <b>Camera</b>
@@ -20,6 +21,7 @@ export default function Mainscreen() {
                         <a href='/phone'><button className="text-msg-btn">Message</button></a>
                     </div>
                 </div>
+                </Fade>
             </div>
         </div>
     )

@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import '../styles/msg.css';
 import Navigation from '../components/navbar';
 import axios from 'axios';
+import Fade from 'react-reveal/Fade'
 
 axios.defaults.withCredentials = true;
 
@@ -35,6 +36,7 @@ export default function Phone({ accessToken }) {
         <div>
             <div className="msg-body">
                 <a href="/mainscreen"><button className='logout-button'>Leave</button></a>
+                <Fade top>
                 <div className="iphone-x">
                     <i>Speaker</i>
                     <b>Camera</b>
@@ -68,6 +70,7 @@ export default function Phone({ accessToken }) {
                         </div>
                     </form>
                 </div>
+                </Fade>
                 <a href="/faceToFace"><button className='home-button'>Go Home</button></a>
             </div>
         </div>

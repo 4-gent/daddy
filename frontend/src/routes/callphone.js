@@ -4,6 +4,7 @@ import call from '../styles/images/calllogo.png';
 
 import ClientComponent from "../components/humeClient";
 import { fetchAccessToken } from "hume";
+import Fade from 'react-reveal/Fade'
 
 
 export default function Call() {
@@ -41,6 +42,7 @@ export default function Call() {
             <div className='call-body'>
                 <br />
                 <br />
+                <Fade top>
                 <div className="callscreen-x">
                     <i>Speaker</i>
                     <b>Camera</b>
@@ -60,6 +62,7 @@ export default function Call() {
                     <a className='call-btn' href='/mainscreen'><button className='call-btn'>Leave</button></a>
                     </div>
                 </div>
+                </Fade>
                 <a href="/faceToFace"><button className='home-button'>Go Home</button></a>
             </div>
         </div>
